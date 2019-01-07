@@ -5,11 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactsApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
         <StackPanel>
-            <ListView x:Name="contactsListView" Margin="5, 5, 0, 0"></ListView>
             <Button Content="New Contact" x:Name="newContactButton" Click="NewContactButton_OnClick"></Button>
+            <ListView x:Name="contactsListView" Margin="5, 5, 0, 0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Email}" FontSize="16" Foreground="DodgerBlue"/>
+                            <TextBlock Text="{Binding Phone}" FontSize="16" FontStyle="Italic"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Window>
