@@ -46,10 +46,6 @@ namespace DesktopContactsApp
                 connection.Insert(contact);
             }
 
-            
-
-
-
             Close();
         }
     }

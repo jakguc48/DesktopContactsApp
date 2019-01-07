@@ -46,7 +46,7 @@ namespace DesktopContactsApp
             using (SQLite.SQLiteConnection conn = new SQLiteConnection(App.databasePath))
             {
                 conn.CreateTable<Contact>();
-                contacts = conn.Table<Contact>().ToList();
+                contacts = conn.Table<Contact>().ToList().OrderBy(c => c.Name).ToList();
 
             }
 
@@ -71,6 +71,19 @@ namespace DesktopContactsApp
             var filteredlist = contacts.Where(c => c.Name.ToLower().Contains(searchTextBox.Text.ToLower())).ToList(); //tolower zeby bylo nie case sensitive 
 
             contactsListView.ItemsSource = filteredlist;
+        }
+
+        private void ContactsListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Contact selectedContact = contactsListView.SelectedItem as Contact;
+
+            if (selectedContact != null)
+            {
+                ContactDetailsWindow contactDetailsWindow = new ContactDetailsWindow(selectedContact);
+                contactDetailsWindow.ShowDialog();
+            }
+
+            ReadDatabase();
         }
     }
 }
