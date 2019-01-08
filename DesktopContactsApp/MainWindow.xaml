@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactsApp"
+        xmlns:uc="clr-namespace:DesktopContactsApp.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
     <Grid>
@@ -13,11 +14,7 @@
             <ListView x:Name="contactsListView" Margin="5, 5, 0, 0" SelectionChanged="ContactsListView_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Email}" FontSize="16" Foreground="DodgerBlue"/>
-                            <TextBlock Text="{Binding Phone}" FontSize="16" FontStyle="Italic"/>
-                        </StackPanel>
+                        <uc:ContactControl Contact="{Binding}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
